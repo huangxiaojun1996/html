@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打开红包</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #red-envelope {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+        }
+
+        #message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+            color: #ffcc00;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="red-envelope">
+        打开红包
+    </div>
+    <div id="message"></div>
+    <script>
+        const redEnvelope = document.getElementById('red-envelope');
+        const message = document.getElementById('message');
+
+        redEnvelope.addEventListener('click', () => {
+            redEnvelope.style.display = 'none';
+            message.style.display = 'block';
+
+            // 显示随机祝福的艺术字
+            const blessings = ['祝您财源滚滚', '万事如意', '幸福安康', '红包拿来', '恭喜发财'];
+            const randomBlessing = blessings[Math.floor(Math.random() * blessings.length)];
+            message.textContent = randomBlessing;
+
+            // 显示烟花 GIF
+            const fireworksGIF = document.createElement('img');
+            fireworksGIF.src = '1.gif'; // 替换为您的烟花 GIF 文件路径
+            fireworksGIF.style.display = 'block';
+            document.body.appendChild(fireworksGIF);
+
+            // 在 5 秒后返回初始界面
+            setTimeout(() => {
+                fireworksGIF.style.display = 'none';
+                message.style.display = 'none';
+                redEnvelope.style.display = 'block';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
